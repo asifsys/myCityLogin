@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "myCityLogin.AccountService.API\\myCityLogin.AccountService.API.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "myCityLogin.Web\\myCityLogin.Web.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

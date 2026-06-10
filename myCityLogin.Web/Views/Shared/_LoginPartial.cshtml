@@ -1,0 +1,41 @@
+﻿@model myCityLogin.Web.Models.LoginVm
+
+
+<!-- Modal -->
+<div class="modal fade"
+     id="loginModal"
+     tabindex="-1"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalTitle">User Login</h4>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal">
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <!-- LOGIN SECTION -->
+                <div id="loginSection">
+                    <input type="email" class="form-control mb-2" placeholder="Enter Email" id="loginEmail" />
+                    <input type="password" class="form-control mb-3" placeholder="Enter Password" id="loginPassword" />
+                    <button type="button" class="btn btn-success w-100 mb-2" onclick="login()"> Login  </button>
+                    <button type="button" class="btn btn-outline-primary w-100" onclick="showRegister()">  New User </button>
+                </div>
+
+                <!-- REGISTER SECTION (hidden by default) -->
+                <div id="registerSection" style="display:none;">
+                    <input type="text" class="form-control mb-2" placeholder="Full Name" id="fullName" />
+                    <input type="email" class="form-control mb-2" placeholder="Email"  id="registerEmail" />
+                    <input type="password" class="form-control mb-3" placeholder="Password" id="registerPassword" />
+                    <button type="button" class="btn btn-primary w-100 mb-2"  onclick="register()"> Register </button>
+                    <button type="button" class="btn btn-outline-secondary w-100" onclick="cancelRegister()"> Cancel </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Projects\\myCityLogin\\myCityLogin.AccountService.API\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{25E2FEC8-97B3-290A-8C13-A625A21369D0}|myCityLogin.AccountService.API.csproj|c:\\projects\\mycitylogin\\mycitylogin.accountservice.api\\mycitylogin.accountservice.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{25E2FEC8-97B3-290A-8C13-A625A21369D0}|myCityLogin.AccountService.API.csproj|solutionrelative:mycitylogin.accountservice.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "myCityLogin.AccountService.API",
+              "DocumentMoniker": "C:\\Projects\\myCityLogin\\myCityLogin.AccountService.API\\myCityLogin.AccountService.API.csproj",
+              "RelativeDocumentMoniker": "myCityLogin.AccountService.API.csproj",
+              "ToolTip": "C:\\Projects\\myCityLogin\\myCityLogin.AccountService.API\\myCityLogin.AccountService.API.csproj",
+              "RelativeToolTip": "myCityLogin.AccountService.API.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-05-24T16:35:24.508Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

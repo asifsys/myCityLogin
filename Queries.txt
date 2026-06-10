@@ -1,0 +1,78 @@
+USE [SmartDirectoryDb]
+GO
+
+/****** Object:  Table [dbo].[Login]    Script Date: 6/10/2026 1:49:16 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Login](
+	[Email] [nvarchar](50) NOT NULL,
+	[Pasword] [nvarchar](50) NOT NULL
+) ON [PRIMARY]
+GO
+
+-----------------------------------------
+USE [SmartDirectoryDb]
+GO
+
+/****** Object:  Table [dbo].[Users]    Script Date: 6/10/2026 1:50:01 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Users](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[FullName] [nvarchar](max) NOT NULL,
+	[Email] [nvarchar](max) NOT NULL,
+	[PasswordHash] [nvarchar](max) NOT NULL,
+	[Role] [nvarchar](max) NOT NULL,
+	[RefreshToken] [nvarchar](max) NULL,
+	[RefreshTokenExpiryTime] [datetime2](7) NULL,
+	[IsEmailVerified] [bit] NOT NULL
+
+--------------------------------
+
+USE [SmartDirectoryDb]
+GO
+
+/****** Object:  Table [dbo].[Hospitals]    Script Date: 6/10/2026 1:51:19 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Hospitals](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](200) NULL,
+	[Location] [nvarchar](100) NULL,
+	[Address] [nvarchar](300) NULL,
+	[Phone] [nvarchar](20) NULL,
+	[Email] [nvarchar](200) NULL,
+	[Specialization] [nvarchar](200) NULL,
+	[IsActive] [bit] NULL,
+	[CreatedAt] [datetime] NULL
+
+----------------------------------
+
+USE [SmartDirectoryDb]
+GO
+
+/****** Object:  Table [dbo].[Notifications]    Script Date: 6/10/2026 1:52:05 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Notifications](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](200) NULL,
+	[Message] [nvarchar](max) NULL,
+	[IsRead] [bit] NULL,
+	[CreatedDate] [datetime] NULL

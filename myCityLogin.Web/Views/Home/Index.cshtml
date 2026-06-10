@@ -1,0 +1,171 @@
+﻿
+<link href="https://unpkg.com/tabulator-tables@6.2.5/dist/css/tabulator.min.css" rel="stylesheet">
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script src="https://unpkg.com/tabulator-tables@6.2.5/dist/js/tabulator.min.js"></script>
+
+    <style >
+    .tabulator-footer {
+        padding: 10px;
+    }
+
+    .tabulator-paginator {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .tabulator-page-size {
+        height: 35px;
+        min-width: 80px;
+    }
+
+    .tabulator-footer-contents {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+</style>
+
+<div class="row mb-3">
+
+    <div class="col-md-6">
+
+        <div class="input-group">
+
+            <span class="input-group-text bg-white">
+
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     width="16"
+                     height="16"
+                     fill="currentColor"
+                     class="bi bi-geo-alt"
+                     viewBox="0 0 16 16">
+
+                    <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94" />
+
+                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10" />
+
+                    <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+
+                </svg>
+
+            </span>
+
+            <input type="text"  class="form-control"  id="searchLocation" placeholder="Enter location..." />
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="input-group">
+
+            <span class="input-group-text bg-white">
+
+                <svg xmlns="http://www.w3.org/2000/svg"  width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+
+                </svg>
+
+            </span>
+
+            <select class="form-select" id="searchKeyword">
+
+                <option value=""> Select category...  </option>
+
+                <option value="hospital"> Hospital  </option>
+
+                <option value="school"> School </option>
+
+                <option value="restaurant"> Restaurant </option>
+
+                <option value="hotel"> Hotel </option>
+
+                <option value="bank"> Bank </option>
+
+                <option value="pharmacy"> Pharmacy </option>
+
+                <option value="police"> Police Station </option>
+
+                <option value="market"> Market </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-2">
+        <button id="btnSearch"
+                class="btn btn-primary">
+            Search
+        </button>
+    </div>
+
+</div>
+
+<div id="hospitalGrid"></div>
+
+<div>
+
+    <!-- LOGIN PARTIAL -->
+    <partial name="_LoginPartial" />
+</div>
+<script src="\scripts\accountjs\login.js"></script>
+
+<script>
+
+        var table = new Tabulator("#hospitalGrid", {
+
+        layout: "fitColumns",
+
+        pagination: true,
+
+        paginationMode: "remote",
+
+        paginationSize: 10,
+
+        paginationSizeSelector: [10,20,50],
+
+        ajaxURL: "/Hospital/SearchHospital",
+       
+        ajaxURLGenerator: function(url, config, params) {
+
+        return url +
+            "?location=" + ($("#searchLocation").val() || "") +
+            "&category=" + ($("#searchKeyword").val() || "") +
+            "&page=" + params.page +
+            "&pageSize=" + params.size;
+    },
+
+        columns: [
+            { title:"ID", field:"id" },
+            { title:"Hospital Name", field:"name" },
+            { title:"Location", field:"location" },
+            { title:"Phone", field:"phone" },
+            { title:"Email", field:"email" },
+            { title:"Specialization", field:"specialization" },
+            { title:"Status", field:"isActive" }
+
+        ]
+    });
+
+
+        $("#btnSearch").click(function () {
+
+       // table.setData();
+           table.setData("/Hospital/SearchHospital", {
+        location: $("#searchLocation").val(),
+        category: $("#searchKeyword").val(),
+        page: 1
+    });
+
+    });
+
+
+
+</script>

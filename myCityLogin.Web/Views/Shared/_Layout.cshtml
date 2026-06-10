@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>
+        @ViewData["Title"] - myCityLogin.Web
+    </title>
+
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet"
+          href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- SITE CSS -->
+    <link rel="stylesheet"
+          href="~/css/site.css"
+          asp-append-version="true" />
+
+    <link rel="stylesheet"
+          href="~/myCityLogin.Web.styles.css"
+          asp-append-version="true" />
+
+    <!-- KENDO CSS -->
+    <link href="https://kendo.cdn.telerik.com/2024.1.130/styles/kendo.default-v2.min.css"
+          rel="stylesheet" />
+
+</head>
+
+<body>
+
+    <header>
+
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+
+            <div class="container-fluid">
+
+                <a class="navbar-brand"
+                   asp-area=""
+                   asp-controller="Home"
+                   asp-action="Index">
+
+                    City Login
+
+                </a>
+
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target=".navbar-collapse"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+
+                </button>
+
+                <div class="navbar-collapse collapse d-sm-inline-flex align-items-center">
+
+                    <ul class="navbar-nav flex-grow-1">
+
+                        <li class="nav-item">
+
+                            <a class="nav-link text-dark"
+                               asp-area=""
+                               asp-controller="Home"
+                               asp-action="Index">
+
+                                Home
+
+                            </a>
+
+                        </li>
+
+                        <li class="nav-item">
+
+                            <a class="nav-link text-dark"
+                               asp-area=""
+                               asp-controller="Home"
+                               asp-action="Privacy">
+
+                                Privacy
+
+                            </a>
+
+                        </li>
+
+                    </ul>
+
+                    <!-- LOGIN BUTTON -->
+                    <button class="btn btn-primary ms-auto"
+                            id="btnLoginRegister"
+                            data-bs-toggle="modal"
+                            data-bs-target="#loginModal">
+
+                        Login / Register
+
+                    </button>
+
+                    <!-- LOGOUT BUTTON -->
+                    <button class="btn btn-danger ms-auto"
+                            id="btnLogout"
+                            style="display:none;"
+                            onclick="logout()">
+
+                        Logout
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+    <!-- BODY -->
+    <div class="container">
+
+        <main role="main"
+              class="pb-3">
+
+            @RenderBody()
+
+        </main>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="border-top footer text-muted">
+
+        <div class="container">
+
+            &copy; 2026 - CityLogin -
+
+            <a asp-area=""
+               asp-controller="Home"
+               asp-action="Privacy">
+
+                Privacy
+
+            </a>
+
+        </div>
+
+    </footer>
+
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- KENDO -->
+    <script src="https://kendo.cdn.telerik.com/2024.1.130/js/kendo.all.min.js"></script>
+
+    <!-- BOOTSTRAP -->
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- SITE -->
+    <script src="~/js/site.js"  asp-append-version="true"></script>
+
+    <!-- LOGIN SCRIPT -->
+    <script>
+
+        // SHOW BUTTONS
+        if (sessionStorage.getItem("jwtToken")) {
+
+            document.getElementById("btnLoginRegister").style.display = "none";
+
+            document.getElementById("btnLogout").style.display = "block";
+        }
+
+        // LOGOUT
+        function logout() {
+
+            sessionStorage.removeItem("jwtToken");
+
+            window.location.href = "/";
+        }
+
+    </script>
+
+    <!-- PAGE SCRIPTS -->
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+
+</html>
