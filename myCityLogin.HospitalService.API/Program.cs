@@ -6,6 +6,7 @@ using myCityLogin.HospitalService.API.Data;
 using myCityLogin.HospitalService.API.Interfaces;
 using myCityLogin.HospitalService.API.Middleware;
 using myCityLogin.HospitalService.API.Repository;
+using myCityLogin.HospitalService.API.Services;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 // EF Core
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+builder.Services.AddDbContext<HospitalDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("DefaultConnection"),
         sqlOptions => sqlOptions.EnableRetryOnFailure(
@@ -36,8 +37,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuerSigningKey = true,
             ValidIssuer = builder.Configuration["Jwt:Issuer"],
             ValidAudience = builder.Configuration["Jwt:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(
-                                           Encoding.UTF8.GetBytes(jwtKey))
+            IssuerSigningKey = new SymmetricSecurityKey( Encoding.UTF8.GetBytes(jwtKey))
         };
     });
 
@@ -45,15 +45,15 @@ builder.Services.AddAuthorization();
 
 // DI registrations
 builder.Services.AddScoped<IHospitalRepository, HospitalRepository>();
+builder.Services.AddScoped<IProviderRepository, ProviderRepository>();
+builder.Services.AddScoped<IProviderService, ProviderService>();
 
 // CORS — allow myCityLogin.Web on both http and https
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowMyWeb", policy =>
     {
-        policy.WithOrigins(
-                "http://localhost:5191 ",
-                "https://localhost:7001")
+        policy.WithOrigins("http://localhost:5191 ", "https://localhost:7001")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });

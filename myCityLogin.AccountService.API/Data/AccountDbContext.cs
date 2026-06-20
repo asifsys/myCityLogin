@@ -3,15 +3,14 @@ using myCityLogin.AccountService.API.Models;
 
 namespace myCityLogin.AccountService.API.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class AccountDbContext : DbContext
     {
-        public ApplicationDbContext(
-            DbContextOptions<ApplicationDbContext> options)
-            : base(options)
+        public AccountDbContext( DbContextOptions<AccountDbContext> options): base(options)
         {
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
 
     }
 }

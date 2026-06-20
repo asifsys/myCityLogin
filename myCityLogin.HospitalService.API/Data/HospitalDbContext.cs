@@ -3,14 +3,13 @@ using myCityLogin.HospitalService.API.Models;
 
 namespace myCityLogin.HospitalService.API.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class HospitalDbContext : DbContext
     {
-        public ApplicationDbContext(
-            DbContextOptions<ApplicationDbContext> options)
-            : base(options)
+        public HospitalDbContext( DbContextOptions<HospitalDbContext> options) : base(options)
         {
         }
 
         public DbSet<Hospital> Hospitals { get; set; }
+        public DbSet<Provider> Providers { get; set; }
     }
 }

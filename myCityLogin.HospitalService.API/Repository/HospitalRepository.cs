@@ -8,9 +8,9 @@ namespace myCityLogin.HospitalService.API.Repository
 {
     public class HospitalRepository : IHospitalRepository
     {
-        private readonly ApplicationDbContext _context;
+        private readonly HospitalDbContext _context;
 
-        public HospitalRepository(ApplicationDbContext context)
+        public HospitalRepository(HospitalDbContext context)
         {
             _context = context;
         }

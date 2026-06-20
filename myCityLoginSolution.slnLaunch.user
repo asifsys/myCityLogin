@@ -9,6 +9,10 @@
       {
         "Path": "myCityLogin.Web\\myCityLogin.Web.csproj",
         "Action": "Start"
+      },
+      {
+        "Path": "myCityLogin.HospitalService.API\\myCityLogin.HospitalService.API.csproj",
+        "Action": "Start"
       }
     ]
   }

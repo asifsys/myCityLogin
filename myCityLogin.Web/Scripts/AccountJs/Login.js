@@ -61,7 +61,6 @@ $(document).ready(function () {
          // REGISTER
              async function register()
             {
-
                 // VALIDATION
                 if ($("#fullName").val().trim() === "") {
                     alert("Full Name is required");
@@ -173,9 +172,8 @@ async function login() {
                 $("#btnLoginRegister").hide();
                 $("#btnLogout").show();
 
-               //// alert(response.message);
-
-                window.location.href = "/Dashboard/Dashboard";
+                //  window.location.href = "/Dashboard/Dashboard";
+                window.location.href = "/Provider/Provider";
             }
             else {
                 alert(response.message || "Invalid credentials");

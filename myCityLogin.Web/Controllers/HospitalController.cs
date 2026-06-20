@@ -27,7 +27,8 @@ namespace myCityLogin.Web.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> SearchHospital(string location, string category, int page = 1 , int pageSize = 10)
+        public async Task<IActionResult>
+            SearchHospital(string location, string category, int page = 1 , int pageSize = 10)
 
         {
             string apiUrl = $"https://localhost:7120/api/Hospital/SearchAll" + $"?location={location}" + $"&category={category}" + $"&page={page}" + $"&pageSize={pageSize}";
@@ -41,10 +42,6 @@ namespace myCityLogin.Web.Controllers
 
             int lastPage = (int)Math.Ceiling((double)result.Total / pageSize);
 
-            // int total = result["total"].Value<int>();
-
-            //int lastPage = (int)Math.Ceiling((double)total / pageSize);
-
             return Json(new
             {
                 // data = result["data"].ToObject<object>(),
@@ -53,45 +50,6 @@ namespace myCityLogin.Web.Controllers
             });
         }
 
-
-
-        //// public async Task<JsonResult> SearchHospital(string location,string category, int page = 1,int pageSize = 10)
-        //public async Task<IActionResult> SearchHospital(string location, string category, int page = 1, int pageSize = 10)
-
-        //{
-        //    string apiUrl =
-        //$"https://localhost:7120/api/Hospital/SearchAll" +
-        //$"?location={location}" +
-        //$"&category={category}" +
-        //$"&page={page}" +
-        //$"&pageSize={pageSize}";
-
-        //    var response = await _httpClient.GetAsync(apiUrl);
-
-        //    var jsondata = await response.Content.ReadAsStringAsync();
-        //    //dynamic result = JsonConvert.DeserializeObject(jsondata);
-
-        //    ////int total = result.total;
-        //    // var result = JObject.Parse(jsondata);
-        //    //var hospitals = result["data"].ToObject<List<HospitalVM>>();
-        //    //int total = result["total"].Value<int>();
-
-        //    //// int total = (int)result["total"];
-
-        //    //int lastPage = (int)Math.Ceiling((double)total / pageSize);
-
-        //    //return Json(new
-        //    //{
-        //    //    data = result["data"],
-        //    //    last_page = lastPage
-        //    //});
-
-        //    ////  var result = JsonConvert.DeserializeObject<object>(jsondata);
-
-        //    ////  return Json(result);
-
-        //     return Content(jsondata, "application/json");
-        //}
 
         [HttpGet]
         public async Task<IActionResult> GetHospitalsByValue(string? location, string? keyword)

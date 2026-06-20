@@ -1,0 +1,345 @@
+﻿@model myCityLogin.Web.Models.Users.ProviderRequest
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<form id="providerForm">
+
+    <div class="card">
+
+        <div class="card-header">
+
+            <h3>Provider Information</h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-4">
+
+                    <label>Provider Type</label>
+
+                    <select asp-for="ProviderType" class="form-control">
+
+                        <option value="">Select</option>
+
+                        <option>Doctor</option>
+
+                        <option>Physician</option>
+
+                        <option>Dentist</option>
+
+                        <option>Surgeon</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <label>First Name</label>
+
+                    <input asp-for="FirstName" class="form-control" />
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <label>Last Name</label>
+
+                    <input asp-for="LastName" class="form-control" />
+
+                </div>
+
+            </div>
+
+            <br />
+
+            <div class="row">
+
+                <div class="col-md-4">
+
+                    <label>Gender</label>
+
+                    <select asp-for="Gender" class="form-control">
+
+                        <option>Male</option>
+
+                        <option>Female</option>
+
+                        <option>Other</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <label>Date Of Birth</label>
+
+                    <input asp-for="DOB" type="date" class="form-control" />
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <label>Contact Number</label>
+
+                    <input asp-for="ContactNumber" class="form-control" />
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    @* Login Information *@
+
+    <div class="card mt-3">
+
+        <div class="card-header">
+
+            Login Information
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-4">
+
+                    <label>User Name</label>
+
+                    <input asp-for="UserName" class="form-control" />
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <label>Password</label>
+
+                    <input asp-for="Password" type="password"  class="form-control" />
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <label>Email</label>
+
+                    <input asp-for="Email"  class="form-control" />
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    @*     Professional Information *@
+
+    <div class="card mt-3">
+
+        <div class="card-header">
+
+            Professional Details
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-4">
+
+                    <label>Qualification</label>
+                    <input asp-for="Qualification" class="form-control" />
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <label>Speciality</label>
+
+                    <select asp-for="Speciality"
+                            class="form-control">
+
+                        <option>Orthopedics</option>
+
+                        <option>Oncology</option>
+
+                        <option>Cardiology</option>
+
+                        <option>Neurology</option>
+
+                        <option>ENT</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <label>Experience</label> <input asp-for="Experience"  class="form-control" />
+
+                </div>
+
+            </div>
+
+            <br />
+
+            <div class="row">
+
+                <div class="col-md-4">
+                    <label>Registration Number</label> <input asp-for="RegistrationNumber"  class="form-control" />
+                </div>
+
+                <div class="col-md-4">
+
+                    <label>Status</label>
+
+                    <select asp-for="Status"
+                            class="form-control">
+
+                        <option>Pending</option>
+
+                        <option>Approved</option>
+
+                        <option>Rejected</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="form-check mt-4"> <input asp-for="IsActive" /> <label>Is Active</label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    @* Address *@
+
+    <div class="card mt-3">
+
+      <div class="card-header"> Address </div>
+
+        <div class="card-body">
+
+<textarea asp-for="Address.Address1" id="addressid"
+          class="form-control"></textarea>
+
+            <br />
+
+            <div class="row">
+
+                <div class="col-md-4">
+                    <input asp-for="Address.City" id="cityid" placeholder="City" class="form-control" />
+                </div>
+
+                <div class="col-md-4">
+                    <input asp-for="Address.State" id="stateid"  placeholder="State"  class="form-control" />
+                </div>
+
+                <div class="col-md-4">
+                    <input asp-for="Address.PinCode" id="pincodeid"   placeholder="Pin Code"  class="form-control" />
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    @* Certifications *@
+
+    <div class="card mt-3">
+
+        <div class="card-header">
+
+            Certification
+
+        </div>
+
+        <div class="card-body">
+
+            <input asp-for="IsCertified" id="chkCertification" />
+
+            <label>Certified Provider</label>
+
+            <div id="certificationDiv" style="display:none">
+
+                <table class="table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Name</th>
+
+                            <th>No</th>
+
+                            <th>Year</th>
+
+                            <th>Provider</th>
+
+                            <th></th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="certBody">
+                    </tbody>
+
+                </table>
+
+                <button type="button"
+                        class="btn btn-success"
+                        onclick="addCertification()">
+
+                    Add Certification
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    @* Save Button *@
+
+    <div class="mt-3">
+
+        <button type="button"
+                class="btn btn-primary"
+                onclick="saveProvider()">
+
+            Save
+
+        </button>
+
+        <button type="reset"
+                class="btn btn-secondary">
+
+            Clear
+
+        </button>
+
+    </div>
+
+</form>
+
+<script src="~/scripts/provider/provider.js"></script>

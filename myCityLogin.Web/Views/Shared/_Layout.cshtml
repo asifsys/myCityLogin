@@ -113,6 +113,27 @@
 
                     </button>
 
+                    <ul>
+                        <li class="nav-item dropdown">
+
+                            <a class="nav-link"
+                               data-bs-toggle="dropdown">
+
+                                <i class="fa fa-bell"></i>
+
+                                <span id="notificationCount"
+                                      class="badge bg-danger">
+                                    0
+                                </span>
+
+                            </a>
+
+                            <ul class="dropdown-menu"
+                                id="notificationList">
+                            </ul>
+
+                        </li>
+                    </ul>
                 </div>
 
             </div>
@@ -140,13 +161,7 @@
 
             &copy; 2026 - CityLogin -
 
-            <a asp-area=""
-               asp-controller="Home"
-               asp-action="Privacy">
-
-                Privacy
-
-            </a>
+            <a asp-area="" asp-controller="Home" asp-action="Privacy"> Privacy    </a>
 
         </div>
 
@@ -166,6 +181,53 @@
 
     <!-- LOGIN SCRIPT -->
     <script>
+          $(document).ready(function () {
+            let userId =  sessionStorage.getItem("UserId");
+            loadNotificationCount(userId);
+
+            loadNotifications(userId);
+        });
+
+        // NOTIFICATION
+         function loadNotificationCount(userId)
+        {
+            $.get(
+                '/Notification/GetUnreadCount?userId='
+                + userId,
+                function(count)
+                {
+                    $("#notificationCount")
+                        .text(count);
+                });
+        }
+
+                function loadNotifications(userId)
+        {
+            $.get(
+                '/Notification/GetNotifications?userId='
+                + userId,
+                function(data)
+                {
+                    let notifications =
+                        JSON.parse(data);
+
+                    let html = '';
+
+                    notifications.forEach(function(item)
+                    {
+                        html += `
+                        <li>
+                            <a class="dropdown-item">
+                                <b>${item.title}</b><br>
+                                ${item.message}
+                            </a>
+                        </li>`;
+                    });
+
+                    $("#notificationList")
+                        .html(html);
+                });
+        }
 
         // SHOW BUTTONS
         if (sessionStorage.getItem("jwtToken")) {
@@ -182,6 +244,8 @@
 
             window.location.href = "/";
         }
+
+
 
     </script>
 
